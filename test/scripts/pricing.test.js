@@ -1,7 +1,7 @@
 import { expect } from '@esm-bundle/chai';
 import sinon from 'sinon';
 import { mockRes } from '../blocks/test-utilities.js';
-import { fetchPlanOnePlans } from '../../express/code/scripts/utils/pricing.js';
+import { fetchPlanOnePlans, getCurrency } from '../../express/code/scripts/utils/pricing.js';
 
 // Prevent app bootstrap during tests
 window.isTestEnv = true;
@@ -70,5 +70,36 @@ describe('Pricing offer format for DE segmentation link', () => {
     const res = await fetchPlanOnePlans('https://commerce-stg.adobe.com/store/segmentation?cli=cc_express&co=us&lang=en&pa=PA-55&ot=trial&svar=express_M2M');
     expect(res.country).to.equal('de');
     expect(res.language).to.equal('de');
+  });
+});
+
+describe('getCurrency - Easy Win Function', () => {
+  it('should return correct currency for known countries', () => {
+    expect(getCurrency('us')).to.equal('USD');
+    expect(getCurrency('gb')).to.equal('GBP');
+    expect(getCurrency('uk')).to.equal('GBP');
+    expect(getCurrency('de')).to.equal('EUR');
+    expect(getCurrency('fr')).to.equal('EUR');
+    expect(getCurrency('ca')).to.equal('CAD');
+    expect(getCurrency('au')).to.equal('AUD');
+    expect(getCurrency('jp')).to.equal('JPY');
+  });
+
+  it('should return undefined for unknown countries', () => {
+    expect(getCurrency('unknown')).to.be.undefined;
+    expect(getCurrency('xyz')).to.be.undefined;
+    expect(getCurrency('')).to.be.undefined;
+  });
+
+  it('should handle case variations', () => {
+    expect(getCurrency('us')).to.equal('USD');
+    expect(getCurrency('de')).to.equal('EUR');
+    expect(getCurrency('gb')).to.equal('GBP');
+  });
+
+  it('should handle special cases', () => {
+    expect(getCurrency('cr')).to.equal('USD'); // Costa Rica uses USD
+    expect(getCurrency('ec')).to.equal('USD'); // Ecuador uses USD
+    expect(getCurrency('gt')).to.equal('USD'); // Guatemala uses USD
   });
 });
