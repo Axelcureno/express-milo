@@ -73,7 +73,7 @@ describe('Pricing offer format for DE segmentation link', () => {
   });
 });
 
-describe('getCurrency - Easy Win Function', () => {
+describe('getCurrency', () => {
   it('should return correct currency for known countries', () => {
     expect(getCurrency('us')).to.equal('USD');
     expect(getCurrency('gb')).to.equal('GBP');

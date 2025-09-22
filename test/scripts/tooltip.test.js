@@ -62,7 +62,7 @@ describe('Tooltip widget parsing', () => {
   });
 });
 
-describe('Tooltip Utility Functions - Easy Win', () => {
+describe('Tooltip Utility Functions', () => {
   describe('adjustElementPosition', () => {
     beforeEach(() => {
       document.body.innerHTML = '';

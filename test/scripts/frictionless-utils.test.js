@@ -1,7 +1,7 @@
 import { expect } from '@esm-bundle/chai';
 import { selectElementByTagPrefix, fadeIn, fadeOut, createDocConfig } from '../../express/code/scripts/utils/frictionless-utils.js';
 
-describe('Frictionless Utils - Easy Win Functions', () => {
+describe('Frictionless Utils', () => {
   describe('selectElementByTagPrefix', () => {
     beforeEach(() => {
       // Clear body and add test elements

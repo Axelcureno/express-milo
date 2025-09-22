@@ -1,7 +1,7 @@
 import { expect } from '@esm-bundle/chai';
 import { generateSearchId, gatherPageImpression, updateImpressionCache, trackSearch, isValidTemplate } from '../../express/code/scripts/template-search-api-v3.js';
 
-describe('Template Search API v3 - Easy Win Functions', () => {
+describe('Template Search API v3', () => {
   describe('generateSearchId', () => {
     it('should generate a unique search ID', () => {
       const id1 = generateSearchId();

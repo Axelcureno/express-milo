@@ -282,7 +282,7 @@ describe('Additional Function Coverage for 100%', () => {
   });
 });
 
-describe('Easy Win Functions - Simple Utils', () => {
+describe('Utility Functions', () => {
   describe('toClassName', () => {
     it('should convert string to valid CSS class name', () => {
       expect(toClassName('Hello World')).to.equal('hello-world');
@@ -347,7 +347,7 @@ describe('Easy Win Functions - Simple Utils', () => {
     });
 
     it('should work with custom document', () => {
-      // Skip this test as getMetadata doesn't support custom documents in the current implementation
+      // Skip this test as getMetadata doesn't support custom documents
       // The function uses document.querySelector internally, not the passed doc parameter
       expect(true).to.be.true; // Placeholder test
     });
