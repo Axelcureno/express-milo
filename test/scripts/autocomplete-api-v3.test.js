@@ -31,7 +31,7 @@ describe('Autocomplete API v3', () => {
   describe('useInputAutocomplete', () => {
     it('should return an object with inputHandler function', () => {
       const result = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       expect(result).to.be.an('object');
       expect(result).to.have.property('inputHandler');
       expect(result.inputHandler).to.be.a('function');
@@ -39,7 +39,7 @@ describe('Autocomplete API v3', () => {
 
     it('should handle input events', () => {
       const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       const mockEvent = {
         target: { value: 'test query' },
       };
@@ -50,7 +50,7 @@ describe('Autocomplete API v3', () => {
 
     it('should handle empty input', () => {
       const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       const mockEvent = {
         target: { value: '' },
       };
@@ -60,7 +60,7 @@ describe('Autocomplete API v3', () => {
 
     it('should handle short queries (less than 4 characters)', () => {
       const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       const mockEvent = {
         target: { value: 'abc' }, // 3 characters
       };
@@ -70,7 +70,7 @@ describe('Autocomplete API v3', () => {
 
     it('should handle queries ending with space', () => {
       const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       const mockEvent = {
         target: { value: 'test query ' }, // ends with space
       };
@@ -80,7 +80,7 @@ describe('Autocomplete API v3', () => {
 
     it('should handle long queries (4+ characters)', () => {
       const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       const mockEvent = {
         target: { value: 'test query' }, // 10 characters
       };
@@ -96,7 +96,7 @@ describe('Autocomplete API v3', () => {
       };
 
       const result = useInputAutocomplete(mockUpdateUI, mockGetConfig, customOptions);
-      
+
       expect(result).to.be.an('object');
       expect(result).to.have.property('inputHandler');
       expect(result.inputHandler).to.be.a('function');
@@ -104,7 +104,7 @@ describe('Autocomplete API v3', () => {
 
     it('should work with default options', () => {
       const result = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       expect(result).to.be.an('object');
       expect(result).to.have.property('inputHandler');
       expect(result.inputHandler).to.be.a('function');
@@ -112,9 +112,9 @@ describe('Autocomplete API v3', () => {
 
     it('should handle special characters in input', () => {
       const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       const specialChars = ['!@#$%^&*()', 'test-query', 'test_query', 'test.query'];
-      
+
       specialChars.forEach((value) => {
         const mockEvent = { target: { value } };
         expect(() => inputHandler(mockEvent)).to.not.throw();
@@ -123,7 +123,7 @@ describe('Autocomplete API v3', () => {
 
     it('should handle very long queries', () => {
       const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       const longQuery = 'a'.repeat(1000);
       const mockEvent = {
         target: { value: longQuery },
@@ -134,10 +134,10 @@ describe('Autocomplete API v3', () => {
 
     it('should handle null and undefined input values', () => {
       const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig);
-      
+
       const mockEventNull = { target: { value: null } };
       const mockEventUndefined = { target: { value: undefined } };
-      
+
       expect(() => inputHandler(mockEventNull)).to.not.throw();
       expect(() => inputHandler(mockEventUndefined)).to.not.throw();
     });
@@ -164,7 +164,9 @@ describe('Autocomplete API v3', () => {
       inputHandler(mockEvent);
 
       // Wait for async operations
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => {
+        setTimeout(resolve, 100);
+      });
 
       expect(mockFetch.called).to.be.true;
     });

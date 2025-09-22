@@ -1,5 +1,6 @@
 import { expect } from '@esm-bundle/chai';
 import sinon from 'sinon';
+// eslint-disable-next-line import/no-named-as-default
 import AssetDecoder, { decodeWithTimeout } from '../../express/code/scripts/utils/assetDecoder.js';
 
 describe('Asset Decoder', () => {
