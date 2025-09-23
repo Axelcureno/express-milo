@@ -182,8 +182,8 @@ describe('Basic Carousel Widget', () => {
         };
 
         // Mock the dynamic import for utils
-        const originalImportLocal2 = global.import || (() => Promise.resolve({}));
-        global.import = (path) => {
+        const originalImportLocal2 = window.import || (() => Promise.resolve({}));
+        window.import = (path) => {
           if (path.includes('utils/utils.js')) {
             return Promise.resolve(utilsModule);
           }

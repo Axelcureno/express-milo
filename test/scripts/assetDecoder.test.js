@@ -104,7 +104,7 @@ describe('Asset Decoder', () => {
     });
 
     it('should clean up timeout on success', async () => {
-      const clearTimeoutSpy = sinon.spy(global, 'clearTimeout');
+      const clearTimeoutSpy = sinon.spy(window, 'clearTimeout');
       const fastPromise = Promise.resolve('success');
 
       await decodeWithTimeout(fastPromise, 1000, 'Timeout message');
@@ -114,7 +114,7 @@ describe('Asset Decoder', () => {
     });
 
     it('should clean up timeout on rejection', async () => {
-      const clearTimeoutSpy = sinon.spy(global, 'clearTimeout');
+      const clearTimeoutSpy = sinon.spy(window, 'clearTimeout');
       const rejectedPromise = Promise.reject(new Error('Promise failed'));
 
       try {

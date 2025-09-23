@@ -10,9 +10,9 @@ describe('Autocomplete API v3', () => {
 
   beforeEach(() => {
     // Mock fetch
-    originalFetch = global.fetch;
+    originalFetch = window.fetch;
     mockFetch = sinon.stub();
-    global.fetch = mockFetch;
+    window.fetch = mockFetch;
 
     // Mock updateUI function
     mockUpdateUI = sinon.spy();
@@ -24,7 +24,7 @@ describe('Autocomplete API v3', () => {
   });
 
   afterEach(() => {
-    global.fetch = originalFetch;
+    window.fetch = originalFetch;
     sinon.restore();
   });
 

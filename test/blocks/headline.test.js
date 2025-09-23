@@ -19,7 +19,7 @@ describe('Headline Block', () => {
     window.lana = { log: sinon.stub() };
 
     // Mock the dynamic import
-    global.import = sinon.stub().resolves({
+    window.import = sinon.stub().resolves({
       getMetadata: mockGetMetadata,
     });
   });
@@ -43,7 +43,7 @@ describe('Headline Block', () => {
       el.appendChild(heading);
 
       // Mock the dynamic import to return getMetadata
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -61,7 +61,7 @@ describe('Headline Block', () => {
       el.appendChild(cfg);
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -82,7 +82,7 @@ describe('Headline Block', () => {
       el.appendChild(cfg);
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -98,7 +98,7 @@ describe('Headline Block', () => {
       el.appendChild(heading);
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -115,7 +115,7 @@ describe('Headline Block', () => {
       el.appendChild(cfg);
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -148,7 +148,7 @@ describe('Headline Block', () => {
       mockGetIconElementDeprecated.returns(mockLogo);
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -177,7 +177,7 @@ describe('Headline Block', () => {
       mockGetMetadata.returns('off');
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -197,7 +197,7 @@ describe('Headline Block', () => {
       mockGetMetadata.returns('on');
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -216,7 +216,7 @@ describe('Headline Block', () => {
         el.appendChild(heading);
 
         // Mock the dynamic import
-        global.import = sinon.stub().resolves({
+        window.import = sinon.stub().resolves({
           getMetadata: mockGetMetadata,
         });
 
@@ -235,7 +235,7 @@ describe('Headline Block', () => {
       el.appendChild(cfg);
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -255,7 +255,7 @@ describe('Headline Block', () => {
       el.appendChild(cfg);
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
@@ -282,7 +282,7 @@ describe('Headline Block', () => {
       el.appendChild(cfg);
 
       // Mock the dynamic import
-      global.import = sinon.stub().resolves({
+      window.import = sinon.stub().resolves({
         getMetadata: mockGetMetadata,
       });
 
