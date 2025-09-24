@@ -75,6 +75,7 @@ export class AssetDecoder {
    * @returns {boolean}
    */
   static isSupported(file) {
+    if (!file || !file.type) return false;
     const type = file.type.toLowerCase();
     return type.startsWith('image/') || type.startsWith('video/');
   }
