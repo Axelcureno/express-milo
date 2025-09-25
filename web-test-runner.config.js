@@ -5,13 +5,11 @@ function customReporter() {
   return {
     async reportTestFileResults({ logger, sessionsForTestFile }) {
       sessionsForTestFile.forEach((session) => {
-        if (session.testResults && session.testResults.tests) {
-          session.testResults.tests.forEach((test) => {
-            if (!test.passed && !test.skipped) {
-              logger.log(test);
-            }
-          });
-        }
+        session.testResults.tests.forEach((test) => {
+          if (!test.passed && !test.skipped) {
+            logger.log(test);
+          }
+        });
       });
     },
   };
@@ -34,11 +32,6 @@ export default {
     <html>
       <head>
         <script type='module'>
-          // Global test setup - fix getLibs() undefined issue
-          import { setLibs } from '/express/code/scripts/utils.js';
-          setLibs('/libs');
-          window.isTestEnv = true;
-          
           const oldFetch = window.fetch;
           window.fetch = async (resource, options) => {
             if (!resource.startsWith('/') && !resource.startsWith('http://localhost')) {
