@@ -1,5 +1,12 @@
 import { expect } from '@esm-bundle/chai';
 
+// Simple test to verify the file is being loaded
+describe('Location Utils Test File', () => {
+  it('should be loaded by the test runner', () => {
+    expect(true).to.be.true;
+  });
+});
+
 // We need to test the internal functions, so we'll create simple versions for testing
 function getCookie(cname) {
   const name = `${cname}=`;
@@ -63,7 +70,18 @@ describe('Location Utils', () => {
     });
 
     it('should handle multiple cookies', () => {
-      document.cookie = 'cookie1=value1; cookie2=value2; cookie3=value3';
+      // Clear existing cookies first
+      document.cookie = 'cookie1=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+      document.cookie = 'cookie2=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+      document.cookie = 'cookie3=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+      document.cookie = 'testCookie=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+      document.cookie = 'otherCookie=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+      
+      // Now set our test cookies
+      document.cookie = 'cookie1=value1';
+      document.cookie = 'cookie2=value2';
+      document.cookie = 'cookie3=value3';
+      
       expect(getCookie('cookie1')).to.equal('value1');
       expect(getCookie('cookie2')).to.equal('value2');
       expect(getCookie('cookie3')).to.equal('value3');

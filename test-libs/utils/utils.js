@@ -3,7 +3,7 @@ export const getConfig = () => ({
   locale: { ietf: 'en-US', region: 'US' },
   contentRoot: '/express',
   codeRoot: '/express/code',
-  locales: { '': { ietf: 'en-US', tk: 'hah7vzn.css' } }
+  locales: { '': { ietf: 'en-US', tk: 'hah7vzn.css' } },
 });
 
 export const createTag = (tag, attrs) => {
@@ -16,9 +16,7 @@ export const createTag = (tag, attrs) => {
   return element;
 };
 
-export const replaceKey = (key, config) => {
-  return '[' + key + ']';
-};
+export const replaceKey = (key) => `[${key}]`;
 
 export const getMetadata = (key) => {
   if (key === 'test-metadata') return 'test-value';
@@ -35,20 +33,16 @@ export const loadStyle = (href) => {
 
 export const getIconElementDeprecated = (name) => {
   const span = document.createElement('span');
-  span.className = 'icon icon-' + name;
+  span.className = `icon icon-${name}`;
   return span;
 };
 
 export const getLibs = () => '/libs';
 
 // Add functions that are causing errors
-export const decorateAutoBlock = (block) => {
-  return block;
-};
+export const decorateAutoBlock = (block) => block;
 
-export const decorateLinks = (block) => {
-  return block;
-};
+export const decorateLinks = (block) => block;
 
 export const addTempWrapperDeprecated = (block, className) => {
   if (block) {
@@ -56,7 +50,4 @@ export const addTempWrapperDeprecated = (block, className) => {
   }
 };
 
-export const decorateButtonsDeprecated = (block) => {
-  return Promise.resolve();
-};
-
+export const decorateButtonsDeprecated = () => Promise.resolve();
