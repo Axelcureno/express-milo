@@ -14,6 +14,11 @@ describe('Autocomplete API v3', () => {
     mockFetch = sinon.stub();
     window.fetch = mockFetch;
 
+    // Set up default mock response for fetch
+    mockFetch.resolves({
+      json: () => Promise.resolve({ queryResults: [{ items: [] }] }),
+    });
+
     // Mock updateUI function
     mockUpdateUI = sinon.spy();
 
