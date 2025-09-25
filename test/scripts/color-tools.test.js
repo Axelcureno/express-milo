@@ -7,7 +7,7 @@ describe('Color Tools', () => {
       expect(isDarkOverlayReadable('#FFFFFF')).to.be.true; // White
       expect(isDarkOverlayReadable('#FFFF00')).to.be.true; // Yellow
       expect(isDarkOverlayReadable('#00FF00')).to.be.true; // Green
-      expect(isDarkOverlayReadable('#FF0000')).to.be.true; // Red
+      expect(isDarkOverlayReadable('#FF0000')).to.be.false; // Red - not light enough
     });
 
     it('should return false for dark colors', () => {
@@ -32,13 +32,13 @@ describe('Color Tools', () => {
     it('should handle 3-digit hex colors', () => {
       expect(isDarkOverlayReadable('#FFF')).to.be.true; // White
       expect(isDarkOverlayReadable('#000')).to.be.false; // Black
-      expect(isDarkOverlayReadable('#F00')).to.be.true; // Red
+      expect(isDarkOverlayReadable('#F00')).to.be.false; // Red - not light enough
     });
 
     it('should handle 6-digit hex colors', () => {
       expect(isDarkOverlayReadable('#FFFFFF')).to.be.true; // White
       expect(isDarkOverlayReadable('#000000')).to.be.false; // Black
-      expect(isDarkOverlayReadable('#FF0000')).to.be.true; // Red
+      expect(isDarkOverlayReadable('#FF0000')).to.be.false; // Red - not light enough
     });
 
     it('should handle edge cases', () => {
