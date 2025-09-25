@@ -41,7 +41,7 @@ export function throttle(cb, delay, { trailing = false } = {}) {
 // returned memoized function is async/sync if input cb is async/sync respectively
 export function memoize(cb, { key = (...args) => args.join(','), ttl } = {}) {
   if (cb && !(cb instanceof Function)) throw new Error('cb must be a function');
-  if (!(ttl > 0 && Number.isInteger(ttl))) throw new Error('ttl must be greater than 0');
+  if (ttl !== undefined && (!(ttl > 0 && Number.isInteger(ttl)))) throw new Error('ttl must be greater than 0');
   const cache = new Map();
   const timers = new Map();
   function invalidate(k) {

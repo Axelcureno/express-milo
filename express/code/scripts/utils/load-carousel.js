@@ -3,6 +3,8 @@ import buildBasicCarousel from '../widgets/basic-carousel.js';
 import buildGridCarousel from '../widgets/grid-carousel.js';
 
 function loadCarousel(selector, parent, options) {
+  if (!parent) return null;
+  
   if (parent.closest('.grid-carousel')) {
     return buildGridCarousel(selector, parent, options);
   }
