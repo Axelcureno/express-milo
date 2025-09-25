@@ -70,7 +70,7 @@ export default function useInputAutocomplete(
 
   const inputHandler = (e) => {
     state.query = e.target.value;
-    if (state.query.length < 4 || state.query.endsWith(' ')) {
+    if (!state.query || state.query.length < 4 || state.query.endsWith(' ')) {
       throttledFetchAndUpdateUI();
     } else {
       debouncedFetchAndUpdateUI();

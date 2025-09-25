@@ -163,12 +163,12 @@ describe('Autocomplete API v3', () => {
         json: () => Promise.resolve(mockResponse),
       });
 
-      const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig);
+      const { inputHandler } = useInputAutocomplete(mockUpdateUI, mockGetConfig, { debounceDelay: 50 });
       const mockEvent = { target: { value: 'test query' } };
 
       inputHandler(mockEvent);
 
-      // Wait for async operations
+      // Wait for async operations (longer than debounce delay)
       await new Promise((resolve) => {
         setTimeout(resolve, 100);
       });
