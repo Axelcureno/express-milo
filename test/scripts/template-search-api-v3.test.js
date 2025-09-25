@@ -195,9 +195,14 @@ describe('Template Search API v3', () => {
     it('should validate template with required properties', () => {
       const validTemplate = {
         id: 'template-123',
-        name: 'Test Template',
-        category: 'design',
-        url: 'https://example.com/template',
+        status: 'approved',
+        customLinks: { branchUrl: 'https://example.com/branch' },
+        assetType: 'Webpage_Template',
+        _links: {
+          'http://ns.adobe.com/adobecloud/rel/rendition': { href: { replace: true } },
+          'http://ns.adobe.com/adobecloud/rel/component': { href: { replace: true } }
+        },
+        behaviors: ['still']
       };
 
       expect(isValidTemplate(validTemplate)).to.be.true;
@@ -238,6 +243,14 @@ describe('Template Search API v3', () => {
     it('should accept template with minimal required properties', () => {
       const minimalTemplate = {
         id: 'template-123',
+        status: 'approved',
+        customLinks: { branchUrl: 'https://example.com/branch' },
+        assetType: 'Webpage_Template',
+        _links: {
+          'http://ns.adobe.com/adobecloud/rel/rendition': { href: { replace: true } },
+          'http://ns.adobe.com/adobecloud/rel/component': { href: { replace: true } }
+        },
+        behaviors: ['still']
       };
 
       expect(isValidTemplate(minimalTemplate)).to.be.true;
@@ -246,6 +259,14 @@ describe('Template Search API v3', () => {
     it('should handle template with additional properties', () => {
       const extendedTemplate = {
         id: 'template-123',
+        status: 'approved',
+        customLinks: { branchUrl: 'https://example.com/branch' },
+        assetType: 'Webpage_Template',
+        _links: {
+          'http://ns.adobe.com/adobecloud/rel/rendition': { href: { replace: true } },
+          'http://ns.adobe.com/adobecloud/rel/component': { href: { replace: true } }
+        },
+        behaviors: ['still'],
         name: 'Test Template',
         category: 'design',
         url: 'https://example.com/template',

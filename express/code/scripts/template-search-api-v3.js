@@ -106,10 +106,14 @@ function formatFilterString(filters) {
 
 export function generateSearchId() {
   // todo: follow up with Linh on ID generation rules. Also refer to wiki: https://wiki.corp.adobe.com/pages/viewpage.action?pageId=2833614476
-  return Math.floor(100000 + Math.random() * 900000);
+  return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
 export function gatherPageImpression(searchProps) {
+  if (!searchProps || !searchProps.filters) {
+    return null;
+  }
+  
   const { filters } = searchProps;
   const usp = new URLSearchParams(window.location.search);
 
@@ -357,6 +361,10 @@ function isValidBehaviors(behaviors) {
 }
 
 export function isValidTemplate(template) {
+  if (!template || typeof template !== 'object') {
+    return false;
+  }
+  
   return !!(template.status === 'approved'
       && template.customLinks?.branchUrl
       && (template.assetType === 'Webpage_Template' || template.pages?.[0]?.rendition?.image?.thumbnail?.componentId)
