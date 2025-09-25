@@ -12,35 +12,33 @@ async function fetchAPI({ limit = 5, textQuery, locale = 'en-US' }) {
     return [];
   }
 
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'x-api-key': window.atob('cHJvamVjdHhfbWFya2V0aW5nX3dlYg=='),
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        experienceId,
-        textQuery,
-        locale,
-        queries: [
-          {
-            limit,
-            id: experienceId,
-            scope: { entities: scopeEntities },
-          },
-        ],
-      }),
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'x-api-key': window.atob('cHJvamVjdHhfbWFya2V0aW5nX3dlYg=='),
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      experienceId,
+      textQuery,
+      locale,
+      queries: [
+        {
+          limit,
+          id: experienceId,
+          scope: { entities: scopeEntities },
+        },
+      ],
+    }),
+  })
+    .then((response) => response.json())
+    .then((response) => (response.queryResults?.[0]?.items ? response : emptyRes))
+    .catch((err) => {
+      // eslint-disable-next-line no-console
+      console.error('Autocomplete API Error: ', err);
+      return emptyRes;
     });
-
-    const data = await response.json();
-    const result = data.queryResults?.[0]?.items ? data : emptyRes;
-    return result.queryResults[0].items;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error('Autocomplete API Error: ', err);
-    return emptyRes.queryResults[0].items;
-  }
+  return res.queryResults[0].items;
 }
 
 const memoizedFetchAPI = memoize(fetchAPI, {
