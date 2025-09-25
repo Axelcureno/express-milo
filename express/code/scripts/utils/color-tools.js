@@ -1,4 +1,6 @@
 export default function isDarkOverlayReadable(colorString) {
+  if (!colorString || typeof colorString !== 'string') return false;
+  
   let r;
   let g;
   let b;
@@ -9,9 +11,10 @@ export default function isDarkOverlayReadable(colorString) {
     );
     [r, g, b] = colorValues.slice(1);
   } else {
-    const hexToRgb = +`0x${colorString
+    const hexString = colorString
       .slice(1)
-      .replace(colorString.length < 5 ? /./g : '', '$&$&')}`;
+      .replace(colorString.length < 5 ? /./g : '', '$&$&');
+    const hexToRgb = parseInt(hexString, 16);
     // eslint-disable-next-line no-bitwise
     r = (hexToRgb >> 16) & 255;
     // eslint-disable-next-line no-bitwise
