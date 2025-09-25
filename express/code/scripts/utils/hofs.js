@@ -1,17 +1,18 @@
 export function debounce(cb, time, { leading = false } = {}) {
   let timer = null;
+  let invoked = false;
   return function debounced(...args) {
-    let invoked = false;
-    if (timer === null && leading) {
+    if (leading && timer === null) {
       cb.apply(this, args);
       invoked = true;
     }
     clearTimeout(timer);
     timer = setTimeout(() => {
-      if (!invoked) {
+      if (!leading || !invoked) {
         cb.apply(this, args);
       }
       timer = null;
+      invoked = false;
     }, time);
   };
 }
